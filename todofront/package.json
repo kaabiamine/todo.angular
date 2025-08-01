@@ -8,6 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "engines": {
+    "node": "18",
+    "npm": "9.x"
+  },
   "prettier": {
     "overrides": [
       {
@@ -44,4 +48,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.2"
   }
+  
 }
