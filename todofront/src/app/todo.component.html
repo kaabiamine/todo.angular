@@ -1,0 +1,23 @@
+<div class="todo-app">
+  <h2><span class="todo-icon">📝</span> Todo List</h2>
+  <form (ngSubmit)="addTodo()" class="todo-form">
+    <input type="text" [(ngModel)]="newTitle" name="title" placeholder="Add a new task..." required autocomplete="off" />
+    <button type="submit" title="Add todo">➕</button>
+  </form>
+  <ul class="todo-list">
+    <li *ngFor="let todo of todos" [class.completed]="todo.completed">
+      <span class="check" (click)="toggleTodo(todo)" [attr.aria-label]="todo.completed ? 'Mark as incomplete' : 'Mark as complete'">
+        <span *ngIf="!todo.completed">⬜</span>
+        <span *ngIf="todo.completed">✅</span>
+      </span>
+      <span class="title" *ngIf="editingId !== todo._id">{{ todo.title }}</span>
+      <form *ngIf="editingId === todo._id" (ngSubmit)="saveEdit(todo)" class="edit-form">
+        <input [(ngModel)]="editTitle" name="editTitle" required />
+        <button type="submit" aria-label="Save">💾</button>
+        <button type="button" (click)="cancelEdit()" aria-label="Cancel">✖️</button>
+      </form>
+      <button class="edit" *ngIf="editingId !== todo._id" (click)="startEdit(todo)" aria-label="Edit todo">✏️</button>
+      <button class="delete" (click)="deleteTodo(todo)" aria-label="Delete todo">🗑️</button>
+    </li>
+  </ul>
+</div>
